@@ -3,6 +3,12 @@ const app = express()
 const bodyParser = require('body-parser')
 
 const saudacao = require('./saudacaoMid')
+const usuarioApi = require('./api/usuario')
+const produtoApi = require('./api/produto')
+produtoApi(app, 'com param!') // importing module and calling with parameters
+
+app.post('/usuario', usuarioApi.salvar)
+app.get('/usuario', usuarioApi.obter)
 
 
 // parse application/x-www-form-urlencoded
@@ -10,6 +16,7 @@ app.use(bodyParser.urlencoded({ extended: false }))
 // app.use(bodyParser.text())
 app.use(bodyParser.json())
 app.use(saudacao('Luis'))
+
 
 
 
